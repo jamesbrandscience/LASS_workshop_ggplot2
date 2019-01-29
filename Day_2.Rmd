@@ -670,7 +670,7 @@ ggplot(word_learning, aes(x = days, y = number_of_words, colour = years_in_NZ)) 
   facet_wrap(~age_group)
 ```
 
-## `geom_text_wordcloud`
+## `wordcloud`
 
 For those who are working with text data...
 
