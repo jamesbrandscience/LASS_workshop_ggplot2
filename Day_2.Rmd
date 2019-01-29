@@ -672,6 +672,28 @@ ggplot(word_learning, aes(x = days, y = number_of_words, colour = years_in_NZ)) 
   facet_wrap(~age_group)
 ```
 
+## `themes`
+
+If we want to change background features of our visualisation, this can be done by choosing a `theme`. These can be peronalisaed so that you have complete control over almost all aspects of the way you plot looks, or for quick aesthetic changes, the defaults act as a neat solution to make things go from nice to _awesome!_
+
+Let's add in a `theme` to the end of our previous plot, specifically using `theme_bw()`...
+
+```{r}
+ggplot(word_learning, aes(x = days, y = number_of_words, colour = years_in_NZ)) +
+  geom_line(aes(group = participant), alpha = 0.2) +
+  geom_smooth(method = "lm", na.rm = TRUE) +
+  facet_wrap(~age_group) +
+  theme_bw()
+```
+
+<br />
+
+<div class = "blue">
+__Q.__ What has changed just by adding this small additional line of code?
+
+__Q.__ Try changing the `theme_bw()` line to `theme_dark`... when would this plot be appropriate?
+</div >
+
 ## `wordcloud`
 
 For those who are working with text data...
