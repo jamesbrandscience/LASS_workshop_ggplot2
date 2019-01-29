@@ -182,6 +182,8 @@ __Q.__ Is there anything interesting?
 __Q.__ What does this tell you about the variables?
 </div>
 
+<br />
+
 If we know the following are true for all the variables in the dataset:
 
 * x mean = 9
@@ -569,7 +571,7 @@ We can load in the dataset from by running the following code:
 Note: Information about the variables in the green box below.
 
 ```{r}
-word_learning <- read.csv(url("https://raw.githubusercontent.com/jamesbrandscience/LASS_workshop_ggplot2/master/Word_learning.csv"))
+word_learning <- read.csv(url("https://raw.githubusercontent.com/jamesbrandscience/LASS_workshop_ggplot2/master/Data/Word_learning.csv"))
 
 word_learning
 
