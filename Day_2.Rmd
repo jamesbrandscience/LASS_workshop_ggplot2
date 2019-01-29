@@ -679,42 +679,51 @@ A __wordcloud__ offers a snapshot visualisation of the text in dataset. These ar
 To make a __wordcloud__ in `ggplot`, we will need to use an extra package called `ggwordcloud`...
 
 ```{r}
-install.packages("ggwordcloud")
-library(ggwordcloud)
+install.packages("wordcloud")
+library(wordcloud)
 ```
 
 Now we need a dataset...
 
-The `ggworldcloud` package has a nice dataset we to show how to use __wordclouds__ in `ggplot` - it is called `love_words_small`.
+For fun... I have mined the text in this tutorial so far and made it into a mini corpus with frequency counts of each of the words used. We will use this dataset to make a __wordcloud__.
 
-Let's see what it looks like...
+<div class = "green">
+__Tip.__ To see how I did this in `R` go to this tutorial: http://www.sthda.com/english/wiki/text-mining-and-word-cloud-fundamentals-in-r-5-simple-steps-you-should-know
+</div >
 
-```{r}
-love_words_small
-```
+<br />
 
-It has 4 variables:
-
-`lang` - The language the word is written in
-
-`word` - The word for _love_ in the language
-
-`native_speakers` - The number of native speakers (in millions)
-
-`speakers` - The total number of speakers (in millions)
-
-Let's visualise this dataset to see which __word__ has the most __speakers__
-
-Note: In our `aes` argument, we need to use `label = word` and `size = speakers`, not the familiar `x = x` and `y = y` as we are not doing a typical `x~y` plot.
+Let's load in the data and see what it looks like...
 
 ```{r}
-ggplot(data = love_words_small[unique(love_words_small$word), ], aes(label = word, size = speakers, color = "red", family = 'Arial Unicode MS')) +
-  geom_text_wordcloud() +
-  scale_size_area(max_size = 24) +
-  theme_minimal()
+wordcloud_data <- read.csv(url("https://raw.githubusercontent.com/jamesbrandscience/LASS_workshop_ggplot2/master/Data/wordcloud_data.csv"))
+```
+
+It has 2 variables:
+
+`word` - The word from the tutorial
+
+`freq` - The frequency count of the word, i.e. the higher the number the more frequent
+
+Let's visualise this dataset to see which __words__ have the highest __frequency__
+
+```{r}
+
+wordcloud(words = wordcloud_data$word,
+          freq = d$freq,
+          min.freq = 5,
+          max.words=200,
+          random.order=FALSE,
+          rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
 
 ```
 
+<div class = "blue">
+__Q.__ Can you understand the code that I used to generate this visualisation?
+
+__Q.__ Use you `dplyr` skills to make a new dataset that removes the words __"let's", "visualise", "data"__ 
+</div >
 
 
 Great!!
