@@ -3,24 +3,30 @@ title: "Data exploration and Visualisation - LASS Workshop 2019 - Univeristy of 
 author: "James Brand"
 date: "January 30, 2019"
 output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
   html_notebook:
     css: sty.css
     number_sections: yes
     toc: yes
-    toc_float: no
-  pdf_document:
-    toc: yes
-  html_document:
-    df_print: paged
-    toc: yes
+    toc_float: yes
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
+
 -----
 
 # Introduction to Day 2 {.unnumbered}
+
+Note:
+
+The repository for this tutorial can be downloaded at [https://github.com/jamesbrandscience/LASS_workshop_ggplot2](https://github.com/jamesbrandscience/LASS_workshop_ggplot2). It contains all the raw data files, R Markdown files and some PowerPoint presentation slides that might also be helpful.
 
 -----
 
@@ -81,7 +87,7 @@ library(tidyverse)
 
 2. If you were not able to install and load the `tidyverse`, we can get around this by running this code...
 
-```{r}
+```{r eval=FALSE}
 install.packages(c("dplyr", "ggplot2"))
 library("dplyr")
 library("ggplot2")
@@ -89,7 +95,7 @@ library("ggplot2")
 
 3. If you have any problems installing or loading these... put up your hand.
 
-```{r}
+```{r eval=FALSE}
 put_up_hand <- help("me")
 ```
 
@@ -452,7 +458,7 @@ anscombe_long_x <- anscombe %>%
 
 anscombe_long_x
 
-anscombe_summary_x <- anscombe_longx %>%
+anscombe_summary_x <- anscombe_long_x %>%
   group_by(x) %>%
   summarise(mean= mean(value), sd= sd(value))
  
@@ -703,7 +709,7 @@ A __wordcloud__ offers a snapshot visualisation of the text in dataset. These ar
 To make a __wordcloud__ in `ggplot`, we will need to use an extra package called `ggwordcloud`...
 
 ```{r}
-install.packages("wordcloud")
+#install.packages("wordcloud")
 library(wordcloud)
 ```
 
@@ -732,9 +738,8 @@ It has 2 variables:
 Let's visualise this dataset to see which __words__ have the highest __frequency__
 
 ```{r}
-
 wordcloud(words = wordcloud_data$word,
-          freq = d$freq,
+          freq = wordcloud_data$freq,
           min.freq = 5,
           max.words=200,
           random.order=FALSE,
